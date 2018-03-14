@@ -43,9 +43,10 @@ documentation verbosity decreases as you progress through that order.
 
 #### Migrate concepts
 
-There are 3 "stages" of migration. There is the Source stage, Process stage,
-and Destination stage. You will notice these concepts in the yaml. For example,
-the `beer_node` migration in Migrate Example has the following:
+There are 3 "stages" of migration. There is the Source (extract) stage, Process
+(transform) stage, and Destination (load) stage. You will notice these concepts
+in the yaml. For example, the `beer_node` migration in Migrate Example has the
+following:
 
 ```$xslt
 source:
@@ -61,10 +62,10 @@ process:
   nid: bid
 ```
 
-The Source plugin defines how the source data is collected. The Destination
-plugin defines what the destination data is going to be. And the Process plugin
-does the work of gluing those together with mappings, normalizers, extractors,
-iterators and the like. It's a powerful system.
+The Source plugin defines how the source data is extracted. The Destination
+plugin defines what the destination data is going in Drupal. And the Process
+plugin does the work of gluing those together with mappings, normalizers,
+extractors, iterators and the like. It's a powerful system.
 
 #### Paragraphs
 
