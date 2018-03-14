@@ -1,0 +1,76 @@
+# Migration configuration for beer content.
+id: node_standard
+label: Migrate Standards into Standard Nodes
+migration_group: yum
+source:
+  # This gets mapped to the object in src/Plugin/migrate/source/NodeStandard.php
+  # Check out the annotation in there to see how it is mapped.
+  plugin: node_standard
+destination:
+  plugin: entity:node
+process:
+  # Simple Mappings
+  title: title
+
+  # Mappings with Default Values
+  type:
+    plugin: default_value
+    default_value: standard
+  # Don't actually use uid 1. Create a migration user.
+  uid:
+    plugin: default_value
+    default_value: 1
+  sticky:
+    plugin: default_value
+    default_value: 0
+  published:
+    plugin: default_value
+    default_value: 1
+
+  # More complex mappings
+  field_body:
+    # You might find some documentation suggesting iterator here, but that has
+    # been deprecated in Drupal 8.4 in favor of sub_process.
+    plugin: sub_process
+    source: body
+    process:
+      # Here are mappings for this field.
+      target_id:
+        # We have more than one process to take top properly map this field.
+        # The first process  is looking up the source id from the paragraph
+        # migration map table to retrieve the destination ids.
+        -
+          plugin: migration_lookup
+          migration: paragraph_text
+          # standard_item_id is the name of the column that has the source id
+          # that gets looked up in the map table.
+          source: standard_item_id
+        # Now that we have the destination ids, we have a problem. There are
+        # two of them: the entity id and the revision id. No worry, we can use
+        # the extract plugin to map index 0 (destid1) to target_id.
+        -
+          plugin: extract
+          index:
+            - 0
+      # We also need to pull in the target_revision_id using the same process as
+      # above, but instead using index 1 (destid2) to target_revision_id.
+      target_revision_id:
+        -
+          plugin: migration_lookup
+          migration: paragraph_text
+          source: standard_item_id
+        -
+          plugin: extract
+          index:
+            - 1
+
+migration_dependencies:
+  required:
+    - paragraph_text
+
+# By specifying this migrate as dependent on this module, when the module gets
+# disabled, th
+dependencies:
+  enforced:
+    module:
+      - yum_migrate

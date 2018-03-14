@@ -1,0 +1,16 @@
+{
+    "name": "lullabot/yum_migrate",
+    "description": "Yum Migrate is an example migration into a Standard node with Paragraphs.",
+    "type": "drupal-module",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "James Sansbury",
+            "email": "james@lullabot.com"
+        }
+    ],
+    "require": {
+        "drupal/migrate_plus": "^4.0",
+        "drupal/migrate_tools": "^4.0"
+    }
+}

@@ -1,0 +1,16 @@
+type: module
+name: Yum Migrate
+description: Yum migrations
+package: Yum
+core: 8.x
+dependencies:
+  - drupal:migrate
+  - migrate_plus (>=8.x-4.x)
+  - migrate_tools (>=8.x-4.x)
+# This is an optional way to re-import configuration when you make changes:
+# Use the config_devel module and add configuration like this:
+#config_devel:
+#  install:
+#    - migrate_plus.migration.node_standard
+#    - migrate_plus.migration.paragraph_text
+#    - migrate_plus.migration_group.yum

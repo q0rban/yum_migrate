@@ -1,0 +1,23 @@
+# Migration configuration for beer content.
+id: paragraph_text
+label: Migrate various text Paragraphs
+migration_group: yum
+source:
+  # This gets mapped to the object in src/Plugin/migrate/source/StandardNode.php
+  # Check out the annotation in there to see how it is mapped.
+  plugin: paragraph_text
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: text
+process:
+  'field_paragraph_body/value': value
+  'field_paragraph_body/format':
+    plugin: default_value
+    default_value: inline_styling
+
+# By specifying this migrate as dependent on this module, when the module gets
+# disabled, th
+dependencies:
+  enforced:
+    module:
+      - yum_migrate
