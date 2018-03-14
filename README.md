@@ -5,18 +5,18 @@ instead of direct from XML.
 
 ### Installation
 
-- Download this module to `web/modules/custom/yum_migrate`.
-- Ensure dependencies are met
+1. Download this module to `web/modules/custom/yum_migrate`.
+2. Ensure dependencies are met
 ```
 $ composer require drupal/migrate_plus:^4.0 drupal/migrate_tools:^4.0
 # You might need to downgrade to drush 8 if you are using drush 9
 $ composer require drush/drush:^8.0 
 ```
-- Create a new `yum_source` database
+3. Create a new `yum_source` database
 ```
 $ drush sqlq "CREATE DATABASE yum_source;" 
 ```
-- Define this database in your settings.php:
+4. Define this database in your settings.php:
 ```
 $databases['yum_source']['default'] = array (
   'database' => 'yum_source',
@@ -29,12 +29,13 @@ $databases['yum_source']['default'] = array (
   'collation' => 'utf8mb4_general_ci',
 );
 ```
-- Import the sql/yum_source.sql file into this new database.
+5. Import the sql/yum_source.sql file into this new database.
 ```
 $ drush sqlq --database=yum_source --file=web/modules/custom/yum_migrate/sql/yum_source.sql
 ```
-- Enable the module with `drush en yum_migrate -y`
-- If you make changes to any of the yml files, re-import the config:
+6. Enable the module with `drush en yum_migrate -y`
+
+If you make changes to any of the yml files, re-import the config:
 ```
 $ drush config-import -y --partial --source=modules/custom/yum_migrate/config/install
 ```
