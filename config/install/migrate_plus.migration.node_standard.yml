@@ -36,8 +36,8 @@ process:
     process:
       # Here are mappings for this field.
       target_id:
-        # We have more than one process to take top properly map this field.
-        # The first process  is looking up the source id from the paragraph
+        # We need to have more than one process to properly map this field.
+        # The first process is looking up the source id from the paragraph
         # migration map table to retrieve the destination ids.
         -
           plugin: migration_lookup
