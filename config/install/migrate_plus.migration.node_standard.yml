@@ -69,7 +69,7 @@ migration_dependencies:
     - paragraph_text
 
 # By specifying this migrate as dependent on this module, when the module gets
-# disabled, th
+# disabled, the configuration in this file will also get deleted.
 dependencies:
   enforced:
     module:
