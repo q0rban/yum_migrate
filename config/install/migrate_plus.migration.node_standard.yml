@@ -30,7 +30,9 @@ process:
   # More complex mappings
   field_body:
     # You might find some documentation suggesting iterator here, but that has
-    # been deprecated in Drupal 8.4 in favor of sub_process.
+    # been deprecated in Drupal 8.4 in favor of sub_process. It makes sense, as
+    # what we are doing is creating a sub_process below to handle the individual
+    # items in the source body array.
     plugin: sub_process
     source: body
     process:
