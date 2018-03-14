@@ -5,6 +5,7 @@ instead of direct from XML.
 
 ### Installation
 
+- Download this module to `web/modules/custom/yum_migrate`.
 - Ensure dependencies are met
 ```
 $ composer require drupal/migrate_plus:^4.0 drupal/migrate_tools:^4.0
@@ -27,6 +28,10 @@ $databases['yum_source']['default'] = array (
   'prefix' => '',
   'collation' => 'utf8mb4_general_ci',
 );
+```
+- Import the sql/yum_source.sql file into this new database.
+```
+$ drush sqlq --database=yum_source --file=web/modules/custom/yum_migrate/sql/yum_source.sql
 ```
 - Enable the module with `drush en yum_migrate -y`
 - If you make changes to any of the yml files, re-import the config:
